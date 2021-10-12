@@ -1,0 +1,17 @@
+@mixin semiBoldOS {
+  font-family: "Open Sans", Verdana, Geneva, Tahoma, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+}
+
+@mixin normalOS {
+  font-family: "Open Sans", Verdana, Geneva, Tahoma, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+@mixin hover {
+  &:not([disabled]):hover {
+    @content;
+  }
+}

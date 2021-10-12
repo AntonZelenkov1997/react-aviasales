@@ -1,6 +1,8 @@
+import styles from './MainPage.scoped.scss'
+
 const MainPage = () => {
     return (
-        <div>Hello world</div>
+        <div className={styles.mainPageContainer}>Hello world</div>
     )
 }
 

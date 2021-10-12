@@ -6,6 +6,7 @@ const mode = process.env.NODE_ENV;
 const isDev = process.env.NODE_ENV === "development";
 
 module.exports = {
+  devtool: 'eval-source-map',
   mode,
   entry: "./src/index.tsx",
   output: {
@@ -14,7 +15,7 @@ module.exports = {
   },
   devServer: {
     static: "./dist",
-    port: isDev ?  8000 : 4000,
+    port: isDev ? 8000 : 4000,
     historyApiFallback: true,
   },
   plugins: [
@@ -41,6 +42,37 @@ module.exports = {
       },
       {
         test: /.s[ac]ss$/i,
+        exclude: /.scoped.s[ac]ss$/i,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true,
+            },
+            
+          },
+
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: ["autoprefixer"],
+                sourceMap: true,
+              },
+            },
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+
+      {
+        test: /.scoped.s[ac]ss$/i,
         use: [
           "style-loader",
 
@@ -51,7 +83,9 @@ module.exports = {
                 localIdentName: "[local]--[hash:base64:5]",
                 mode: "local",
               },
+              sourceMap: true,
             },
+            
           },
 
           {
@@ -59,11 +93,16 @@ module.exports = {
             options: {
               postcssOptions: {
                 plugins: ["autoprefixer"],
+                sourceMap: true,
               },
             },
           },
-
-          "sass-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true,
+            },
+          },
         ],
       },
 
