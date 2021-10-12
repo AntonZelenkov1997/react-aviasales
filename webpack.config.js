@@ -66,6 +66,7 @@ module.exports = {
             loader: "sass-loader",
             options: {
               sourceMap: true,
+              additionalData: `@import "./src/styles/additionalData.scss";`
             },
           },
         ],
@@ -101,6 +102,7 @@ module.exports = {
             loader: "sass-loader",
             options: {
               sourceMap: true,
+              additionalData: `@import "./src/styles/additionalData.scss";`
             },
           },
         ],

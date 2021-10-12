@@ -1,0 +1,81 @@
+.filterItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 20px;
+
+  cursor: pointer;
+
+  @include hover {
+    background-color: #f1fcff;
+  }
+}
+
+/* Customize the label (the containerCheckbox) */
+.containerCheckbox {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  font-size: 20px;
+  user-select: none;
+
+  color: var(--font-primary);
+  font-size: 13px;
+  line-height: 20px;
+  @include osNormal;
+}
+
+/* Hide the browser's default checkbox */
+.containerCheckbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: transparent;
+  border: 1px solid #9abbce;
+  border-radius: 2px;
+}
+
+/* When the checkbox is checked, add a blue background */
+.containerCheckbox input:checked ~ .checkmark {
+  border: 1px solid var(--cyan);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  width: 12px;
+  height: 8px;
+}
+
+/* Show the checkmark when checked */
+.containerCheckbox input:checked ~ .checkmark:after {
+  display: flex;
+}
+
+/* Style the checkmark/indicator */
+.containerCheckbox .checkmark:after {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../../assets/images/checkMark.svg");
+  background-repeat: no-repeat;
+}
