@@ -15,3 +15,9 @@
     @content;
   }
 }
+
+@mixin active {
+  &:not([disabled]):active {
+    @content;
+  }
+}

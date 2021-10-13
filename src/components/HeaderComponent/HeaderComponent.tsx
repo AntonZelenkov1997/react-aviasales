@@ -1,6 +1,8 @@
-import styles from './HeaderComponent.scoped.scss';
-import logo from '../../assets/images/Logo.svg';
 import { FC } from 'react';
+
+
+import styles from './HeaderComponent.scoped.scss';
+import logo from '../../assets/images/Logo_shadow.svg';
 
 const HeaderComponent: FC = () => {
     return (
