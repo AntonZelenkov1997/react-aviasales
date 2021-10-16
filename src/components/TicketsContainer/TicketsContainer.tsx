@@ -9,12 +9,20 @@ import styles from "./TicketsContainer.scoped.scss";
 const TicketsContainer: FC = () => {
   const ticketsFilter = useSelectedFilterTab();
   const asideFilters = useSelectedAsideFilter(ticketsFilter);
-  
+
+  const asideFiltersIsEmpty = asideFilters.length === 0;
+
   return (
     <div className={styles.ticketsContainer}>
       {asideFilters.map((ticket) => (
         <Ticket ticket={ticket} key={ticket.id} />
       ))}
+
+      {asideFiltersIsEmpty && (
+        <div className={styles.asideFiltersIsEmpty}>
+          <span className={styles.asideFiltersIsEmptyText}>Не найдено билетов по заданным фильтрам</span>
+        </div>
+      )}
     </div>
   );
 };
