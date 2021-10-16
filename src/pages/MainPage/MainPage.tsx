@@ -1,4 +1,5 @@
 import { FC } from 'react'
+
 import FilterAsideComponent from '../../components/FilterAsideComponent/FilterAsideComponent'
 import HeaderComponent from '../../components/HeaderComponent/HeaderComponent'
 import SectionSalesBlock from '../../components/SectionSalesBlock/SectionSalesBlock'
