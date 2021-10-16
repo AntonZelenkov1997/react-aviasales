@@ -1,15 +1,19 @@
+import { observer } from "mobx-react-lite";
 import { FC, useState } from "react";
+import useStore from "../../hooks/useStore/useStore";
 import styles from "./FilterCheckbox.scoped.scss";
 
 type FilterCheckboxProps = {
-  title: string;
+  asideFilter: asideStopsFiltersType;
 };
 
-const FilterCheckbox: FC<FilterCheckboxProps> = ({ title }) => {
-  const [statusCheckbox, setStatusCheckbox] = useState<boolean>(false);
+const FilterCheckbox: FC<FilterCheckboxProps> = ({ asideFilter }) => {
+  const { asideStopsFilterStore } = useStore();
+
+  const { title, isSelected, id } = asideFilter;
 
   const toggleCheckbox = () => {
-    setStatusCheckbox((prev) => !prev);
+    asideStopsFilterStore.SET_TOGGLE_ASIDE_STOPS_FILTER(id);
   };
 
   return (
@@ -18,12 +22,12 @@ const FilterCheckbox: FC<FilterCheckboxProps> = ({ title }) => {
         className={styles.containerCheckbox}
         onClick={(e) => e.preventDefault()}
       >
-        <input type="checkbox" checked={statusCheckbox} readOnly />
+        <input type="checkbox" checked={isSelected} readOnly />
         <span className={styles.checkmark} />
-        { title }
+        {title}
       </label>
     </li>
   );
 };
 
-export default FilterCheckbox;
+export default observer(FilterCheckbox);

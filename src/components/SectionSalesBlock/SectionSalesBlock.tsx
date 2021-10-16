@@ -1,5 +1,6 @@
 import { FC } from "react";
 import {observer} from 'mobx-react-lite';
+import axios from 'axios';
 
 import useStore from "../../hooks/useStore/useStore";
 
@@ -12,8 +13,7 @@ const SectionSalesBlock: FC = () => {
   const { ticketsStore } = useStore();
 
   const buttonOnClick = () => {
-    console.log(ticketsStore.GET_TICKETS);
-     
+    ticketsStore.SET_TICKETS()
   };
 
   return (

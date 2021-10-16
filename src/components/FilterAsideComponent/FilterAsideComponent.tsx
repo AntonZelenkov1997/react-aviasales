@@ -1,8 +1,13 @@
+import { observer } from "mobx-react-lite";
 import { FC } from "react";
+import useStore from "../../hooks/useStore/useStore";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import styles from "./FilterAsideComponent.scoped.scss";
 
 const FilterAsideComponent: FC = () => {
+
+  const { asideStopsFilterStore } = useStore();
+
   return (
     <aside className={styles.filterAsideComponentContainer}>
       <div className={styles.filterAsideComponentHeaderWrapper}>
@@ -11,14 +16,10 @@ const FilterAsideComponent: FC = () => {
         </h1>
       </div>
       <ul className={styles.filtersBlock}>
-        <FilterCheckbox title="Все" />
-        <FilterCheckbox title="Без пересадок" />
-        <FilterCheckbox title="1 пересадка" />
-        <FilterCheckbox title="2 пересадки" />
-        <FilterCheckbox title="3 пересадки" />
+        {asideStopsFilterStore.GET_ASIDE_STOPS_FILTERS.map((asideFilter) => <FilterCheckbox key={asideFilter.id} asideFilter={asideFilter} />)}
       </ul>
     </aside>
   );
 };
 
-export default FilterAsideComponent;
+export default observer(FilterAsideComponent);

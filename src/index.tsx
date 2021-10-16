@@ -1,9 +1,9 @@
 import "./styles/index.scss";
 
 import ReactDOM from "react-dom";
-import MainPage from "./pages/MainPage/MainPage";
+import App from "./components/App/App";
 
 
 const root = document.getElementById("root");
 
-ReactDOM.render(<MainPage />, root);
+ReactDOM.render(<App />, root);

@@ -1,16 +1,29 @@
 import { FC } from "react";
 import styles from "./Ticket.scoped.scss";
 
-import S7_logo from "../../assets/images/S7_Logo.png";
+import useSegment from "../../hooks/useSegment/useSegment";
 
-const Ticket: FC = () => {
+
+type TicketProps = {
+  ticket: Ticket
+}
+
+const Ticket: FC<TicketProps> = ({ ticket }) => {
+
+  const { carrier, price, segments } = ticket;
+
+  const [ firstSegment, secondSegment ] = segments;
+
+  const firstSegmentData = useSegment(firstSegment);
+  const secondSegmentData = useSegment(secondSegment);
+
   return (
     <article className={styles.ticketCard}>
       <div className={styles.ticketHeader}>
-        <strong className={styles.ticketPrice}>13 400 Р</strong>
+        <strong className={styles.ticketPrice}>{price.toLocaleString()} Р</strong>
         <div className={styles.ticketSponsorLogoWrapper}>
           <img
-            src={S7_logo}
+            src={`https://pics.avs.io/99/36/${carrier}.png`}
             alt="Not Found"
             className={styles.ticketSponsorLogo}
           />
@@ -20,39 +33,39 @@ const Ticket: FC = () => {
       <div className={styles.ticketShedule}>
         <div className={styles.ticketSheduleRow}>
           <div className={styles.ticketSheduleColumn}>
-            <p className={styles.ticketSheduleColumnTop}>MOW – HKT</p>
+            <p className={styles.ticketSheduleColumnTop}>{firstSegmentData.origin} – {firstSegmentData.destination}</p>
             <time className={styles.ticketSheduleColumnBottom}>
-              10:45 – 08:00
+              {firstSegmentData.startTime} – {firstSegmentData.endTime}
             </time>
           </div>
 
           <div className={styles.ticketSheduleColumn}>
             <p className={styles.ticketSheduleColumnTop}>В пути</p>
-            <time className={styles.ticketSheduleColumnBottom}>21ч 15м</time>
+            <time className={styles.ticketSheduleColumnBottom}>{firstSegmentData.parsedDuration}</time>
           </div>
 
           <div className={styles.ticketSheduleColumn}>
-            <p className={styles.ticketSheduleColumnTop}>2 пересадки</p>
-            <time className={styles.ticketSheduleColumnBottom}>HKG, JNB</time>
+            <p className={styles.ticketSheduleColumnTop}>{firstSegmentData.countOfStops}</p>
+            <time className={styles.ticketSheduleColumnBottom}>{firstSegmentData.stops}</time>
           </div>
         </div>
 
         <div className={styles.ticketSheduleRow}>
           <div className={styles.ticketSheduleColumn}>
-            <p className={styles.ticketSheduleColumnTop}>MOW – HKT</p>
+            <p className={styles.ticketSheduleColumnTop}>{secondSegmentData.origin} – {secondSegmentData.destination}</p>
             <time className={styles.ticketSheduleColumnBottom}>
-            11:20 – 00:50
+            {secondSegmentData.startTime} – {secondSegmentData.endTime}
             </time>
           </div>
 
           <div className={styles.ticketSheduleColumn}>
             <p className={styles.ticketSheduleColumnTop}>В пути</p>
-            <time className={styles.ticketSheduleColumnBottom}>13ч 30м</time>
+            <time className={styles.ticketSheduleColumnBottom}>{secondSegmentData.parsedDuration}</time>
           </div>
 
           <div className={styles.ticketSheduleColumn}>
-            <p className={styles.ticketSheduleColumnTop}>1 пересадка</p>
-            <time className={styles.ticketSheduleColumnBottom}>HKG</time>
+            <p className={styles.ticketSheduleColumnTop}>{secondSegmentData.countOfStops}</p>
+            <time className={styles.ticketSheduleColumnBottom}>{secondSegmentData.stops}</time>
           </div>
         </div>
       </div>
