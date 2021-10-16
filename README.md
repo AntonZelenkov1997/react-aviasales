@@ -40,4 +40,4 @@ yarn run start / npm run start
 
 ## Demo
 
-![Demo](./src/assets/Readme/demo.jpeg)
+![Demo](./src/assets/Readme/demo.png)
