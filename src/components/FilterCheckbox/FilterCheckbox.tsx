@@ -1,6 +1,7 @@
 import { observer } from "mobx-react-lite";
-import { FC, useState } from "react";
+import { FC } from "react";
 import useStore from "../../hooks/useStore/useStore";
+import { asideStopsFiltersType } from "../../types/asideStopsFilter";
 import styles from "./FilterCheckbox.scoped.scss";
 
 type FilterCheckboxProps = {
